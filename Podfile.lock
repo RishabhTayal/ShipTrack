@@ -1,10 +1,13 @@
 PODS:
   - Alamofire (3.2.0)
+  - MTBBarcodeScanner (1.9.1)
 
 DEPENDENCIES:
   - Alamofire
+  - MTBBarcodeScanner
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  MTBBarcodeScanner: d65037ab37f0932b46e11a51e98978593424d64e
 
 COCOAPODS: 0.39.0

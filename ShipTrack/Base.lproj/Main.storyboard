@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -84,5 +85,126 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5R-ci-zb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Basic Example-->
+        <scene sceneID="lrk-aB-PHA">
+            <objects>
+                <viewController storyboardIdentifier="ScannerViewController" id="PXb-Ov-rc6" customClass="ScannerViewController" customModule="ShipTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9r3-bN-mwF"/>
+                        <viewControllerLayoutGuide type="bottom" id="TPV-b4-hKE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tKk-Ji-rm4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gu1-nC-CPr">
+                                <rect key="frame" x="20" y="540" width="560" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="lsh-uc-DzW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Start Scanning">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleScanningTapped:" destination="PXb-Ov-rc6" eventType="touchUpInside" id="THS-Mg-ugH"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9P-vD-bYt">
+                                <rect key="frame" x="20" y="73" width="560" height="367"/>
+                                <color key="backgroundColor" red="0.94128667089999996" green="0.94128667089999996" blue="0.94128667089999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TcM-Ws-ox9">
+                                <rect key="frame" x="20" y="480" width="560" height="52"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="Ofc-xj-CKG"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BarcodeCell" textLabel="T8l-PO-A4r" style="IBUITableViewCellStyleDefault" id="C90-iB-YA2">
+                                        <rect key="frame" x="0.0" y="22" width="560" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C90-iB-YA2" id="5rx-GO-he6">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Barcode String" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T8l-PO-A4r">
+                                                    <rect key="frame" x="15" y="0.0" width="530" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PXb-Ov-rc6" id="8YU-mP-eVF"/>
+                                </connections>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="reverse" translatesAutoresizingMaskIntoConstraints="NO" id="T2G-U6-xdL">
+                                <rect key="frame" x="538" y="80" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="HtX-NA-Wmk"/>
+                                    <constraint firstAttribute="height" constant="30" id="qTk-KC-7wi"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zam-zN-Wb4" userLabel="Flip Camera Button">
+                                <rect key="frame" x="533" y="79" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Egh-zK-rgk"/>
+                                    <constraint firstAttribute="width" constant="40" id="XKH-Vi-m4o"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchCameraTapped:" destination="PXb-Ov-rc6" eventType="touchUpInside" id="cTx-sr-fWm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T2G-U6-xdL" firstAttribute="top" secondItem="9r3-bN-mwF" secondAttribute="bottom" constant="16" id="0Bu-Pz-HTY"/>
+                            <constraint firstItem="TcM-Ws-ox9" firstAttribute="trailing" secondItem="Gu1-nC-CPr" secondAttribute="trailing" id="2cB-bd-9Tj"/>
+                            <constraint firstItem="Gu1-nC-CPr" firstAttribute="top" secondItem="TcM-Ws-ox9" secondAttribute="bottom" constant="8" symbolic="YES" id="34x-e3-Qwk"/>
+                            <constraint firstItem="TcM-Ws-ox9" firstAttribute="leading" secondItem="Gu1-nC-CPr" secondAttribute="leading" id="4wv-JM-A4a"/>
+                            <constraint firstItem="Gu1-nC-CPr" firstAttribute="leading" secondItem="tKk-Ji-rm4" secondAttribute="leading" constant="20" id="ODM-fZ-MHD"/>
+                            <constraint firstItem="TPV-b4-hKE" firstAttribute="top" secondItem="Gu1-nC-CPr" secondAttribute="bottom" constant="20" id="Tmr-dI-20Z"/>
+                            <constraint firstItem="g9P-vD-bYt" firstAttribute="top" secondItem="9r3-bN-mwF" secondAttribute="bottom" constant="9" id="X4j-4x-GG8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zam-zN-Wb4" secondAttribute="trailing" constant="7" id="iko-kA-rH4"/>
+                            <constraint firstItem="g9P-vD-bYt" firstAttribute="trailing" secondItem="TcM-Ws-ox9" secondAttribute="trailing" id="kSo-dh-IlX"/>
+                            <constraint firstItem="g9P-vD-bYt" firstAttribute="leading" secondItem="TcM-Ws-ox9" secondAttribute="leading" id="lA7-Ju-sAn"/>
+                            <constraint firstItem="TcM-Ws-ox9" firstAttribute="top" secondItem="g9P-vD-bYt" secondAttribute="bottom" constant="8" symbolic="YES" id="luv-Rz-xxR"/>
+                            <constraint firstItem="Zam-zN-Wb4" firstAttribute="top" secondItem="9r3-bN-mwF" secondAttribute="bottom" constant="15" id="qe0-lx-bSs"/>
+                            <constraint firstItem="Gu1-nC-CPr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tKk-Ji-rm4" secondAttribute="leading" constant="20" id="x6h-63-Uc3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="T2G-U6-xdL" secondAttribute="trailing" constant="12" id="x8S-km-4K2"/>
+                            <constraint firstAttribute="trailing" secondItem="Gu1-nC-CPr" secondAttribute="trailing" constant="20" id="zQO-rX-8Ao"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Basic Example" id="ceP-Mz-0Xw">
+                        <barButtonItem key="rightBarButtonItem" title="Enable Torch" id="aAc-m3-j1S">
+                            <connections>
+                                <action selector="toggleTorchTapped:" destination="PXb-Ov-rc6" id="Co6-ku-qOn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="previewView" destination="g9P-vD-bYt" id="XvA-C7-knk"/>
+                        <outlet property="tableView" destination="TcM-Ws-ox9" id="u2P-Xl-Gxa"/>
+                        <outlet property="toggleScanningButton" destination="Gu1-nC-CPr" id="2zM-dB-6vj"/>
+                        <outlet property="toggleTorchButton" destination="aAc-m3-j1S" id="Jnf-IJ-WGR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H0A-pP-CI9" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="453" y="-434"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="reverse" width="60" height="48"/>
+    </resources>
 </document>

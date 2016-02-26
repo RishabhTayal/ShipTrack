@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet var tableView: UITableView!
     
     var datasource: [TrackingStatus] = []
@@ -18,9 +18,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Camera, target: self, action: "rightBarButtonTapped:")
+        
         getTrackingStatus()
     }
-
+    
+    func rightBarButtonTapped(sender: AnyObject) {
+        let scannerVC = storyboard?.instantiateViewControllerWithIdentifier("ScannerViewController") as! ScannerViewController
+        navigationController?.pushViewController(scannerVC, animated: true)
+    }
+    
     func getTrackingStatus() {
         Alamofire.request(Method.GET, "https://api.goshippo.com/v1/tracks/fedex/782421360311").responseJSON { (response: Response<AnyObject, NSError>) -> Void in
             print(response.result.value)
@@ -46,6 +53,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let statusObj = datasource[indexPath.row]
         cell?.textLabel?.text = statusObj.status
         cell?.detailTextLabel?.text = statusObj.location?.city
+        
+        AppHelpers.geoDecodeLocation(statusObj.location!) { (result) -> Void in
+            print(result)
+        }
+        
         return cell!
     }
 }
