@@ -1,13 +1,16 @@
 PODS:
   - Alamofire (3.2.0)
   - MTBBarcodeScanner (1.9.1)
+  - TesseractOCRiOS (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - MTBBarcodeScanner
+  - TesseractOCRiOS (= 4.0.0)
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
   MTBBarcodeScanner: d65037ab37f0932b46e11a51e98978593424d64e
+  TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
 
 COCOAPODS: 0.39.0

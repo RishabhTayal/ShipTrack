@@ -11,6 +11,8 @@ import CoreLocation
 
 class AppHelpers: NSObject {
     
+    static let ShippoPrivateAuthToken = "ec9bd4e1035a8a574de89c5c98f22cc8ea4b6525"
+    
     class func geoDecodeLocation(locationObj: Location, completion: ((result: CLPlacemark?) -> Void)) {
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(locationObj.city!) { (placemark: [CLPlacemark]?, error: NSError?) -> Void in

@@ -19,8 +19,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Camera, target: self, action: "rightBarButtonTapped:")
-        
+        self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(barButtonSystemItem: .Camera, target: self, action: "ocrButtonTapped:"))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "create", style: .Plain, target: self, action: "createTapped:")
         getTrackingStatus()
+    }
+    
+    func createTapped(sender: AnyObject) {
+        let createLabelVC = CreateShippingViewController()
+        navigationController?.pushViewController(createLabelVC, animated: true)
+    }
+    
+    func ocrButtonTapped(sender: AnyObject) {
+        let ocrVC = OCRViewController()
+        navigationController?.pushViewController(ocrVC, animated: true)
     }
     
     func rightBarButtonTapped(sender: AnyObject) {
@@ -31,7 +42,7 @@ class ViewController: UIViewController {
     func getTrackingStatus() {
         Alamofire.request(Method.GET, "https://api.goshippo.com/v1/tracks/fedex/782421360311").responseJSON { (response: Response<AnyObject, NSError>) -> Void in
             print(response.result.value)
-            if let trackingHistory = response.result.value!["tracking_history"] {
+            if let value = response.result.value, trackingHistory = value["tracking_history"] {
                 self.datasource = []
                 for status in trackingHistory as! [Dictionary<String, AnyObject>] {
                     let statusObj = TrackingStatus.init(dictionary: status)
